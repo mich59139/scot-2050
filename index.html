@@ -308,6 +308,29 @@ h2.big{font-size:clamp(1.4rem,3vw,2.05rem);line-height:1.18;font-stretch:85%;mar
 .lev li button:hover{background:var(--paper)}
 .lev li b{font-family:var(--display);color:var(--c)}
 .lev li.ns span{color:var(--muted)}
+.def{font-size:1.12rem;max-width:70ch;margin:0 0 16px}
+.wgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.wgrid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:900px){.wgrid,.wgrid.three{grid-template-columns:1fr}}
+.wcard{background:var(--paper);border-radius:6px;padding:14px 16px;min-width:0}
+.wcard h4,.wsub{font-family:var(--display);font-size:1.08rem;margin:0 0 6px}
+.wcard p{margin:0 0 8px;font-size:.95rem}.wcard p:last-child{margin:0}
+.themes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:.95rem}
+.themes li{display:flex;align-items:center;gap:10px}
+.themes .ic{width:26px;height:26px;stroke:var(--axA)}
+.wsub{margin-top:4px}
+.levels{list-style:none;margin:8px 0 6px;padding:0;display:flex;flex-direction:column;align-items:center;gap:0}
+.levels li:not(.arr){width:var(--w);max-width:100%;box-sizing:border-box;border-radius:6px;padding:10px 14px;text-align:center;background:color-mix(in srgb,var(--axA) var(--p),var(--sheet));color:var(--ink);border:1px solid var(--line)}
+.levels li b{display:block;font-family:var(--display);font-size:1.05rem}
+.levels li span{font-size:.9rem;color:var(--muted)}
+.levels .l0{--w:100%;--p:8%}.levels .l1{--w:84%;--p:20%}.levels .l2{--w:66%;--p:12%}.levels .l3{--w:48%;--p:6%}
+.levels .me{border:2px solid var(--scot)!important}
+.levels .arr{font-size:.82rem;color:var(--muted);padding:4px 0;font-style:italic}
+.levels .arr::before{content:"↓ ";font-style:normal;color:var(--scot);font-weight:700}
+@media (max-width:600px){.levels li:not(.arr){width:100%}}
+.example{border-left:5px solid var(--gold);background:var(--todo-bg);border-radius:0 6px 6px 0;padding:12px 16px}
+.example b{font-family:var(--display)}
+.example p{margin:4px 0 0}
 /* v2 : accueil plus vivant */
 :root{--hero:#1f3557;--hero-ink:#ffffff;--hero-mute:#c9d4e6;--gold:#f2b84b}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--hero:#1a2a44;--hero-ink:#f3f6fb;--hero-mute:#aebcd3;--gold:#f2c66b}}
@@ -375,6 +398,22 @@ ol.ask b{display:inline;margin:0}
 .axcard{background:linear-gradient(135deg,color-mix(in srgb,var(--c) 10%,var(--sheet)),var(--sheet) 60%)}
 .banner .ic{width:22px;height:22px;stroke:var(--c);align-self:center}
 .banner::before{content:none}
+/* v3 : texte réparti sur toute la largeur */
+.block .lead,.block .small,.block p,.def,.why,.note-src{max-width:none}
+.hero-txt{max-width:none}
+.hero p{max-width:none;font-size:1.02rem}
+.hero h2.big{max-width:30ch}
+.lesson{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px;align-items:center}
+@media (max-width:860px){.lesson{grid-template-columns:1fr;gap:12px}}
+.lesson .lq{max-width:none}
+.lesson-goals{background:var(--paper);border-radius:8px;padding:14px 18px}
+.lesson-goals .goals-t{margin-top:0}
+.goals{list-style:none;padding:0;counter-reset:g}
+.goals li{display:grid;grid-template-columns:1.6em minmax(0,1fr);align-items:baseline}
+.goals li::before{counter-increment:g;content:counter(g) ".";font-weight:700;color:var(--muted)}
+.goals li>.linklike{display:block;text-align:left}
+.levels{margin-left:auto;margin-right:auto}
+.whatis .small{text-align:center}
 @media (prefers-reduced-motion:no-preference){.sheet{animation:in .18s ease-out}@keyframes in{from{transform:translateY(4px)}to{transform:none}}}
 </style>
 </head>
@@ -420,9 +459,9 @@ ol.ask b{display:inline;margin:0}
     <div class="hero">
       <div class="hero-txt">
         <p class="kicker">Révision du SCoT · grande région de Grenoble</p>
-        <h2 class="big">Vingt ans de règles d'aménagement pour 261 communes sont en train d'être réécrites.</h2>
-        <p>Le SCoT de 2012 est en révision depuis novembre 2024. Le futur « SCoT 2050 » s'imposera aux plans locaux d'urbanisme, dont celui de la Métropole qui s'applique à Vizille.</p>
-        <div class="hero-cta"><a class="btn" href="#fiches">Parcourir les 101 fiches</a><a class="btn ghost" href="#demarche">Comprendre la démarche</a></div>
+        <h2 class="big">Le SCoT, c'est le plan d'ensemble que 261 communes de la région grenobloise se donnent pour vingt ans.</h2>
+        <p>Le schéma de cohérence territoriale (SCoT) met les communes d'accord sur les choix qui dépassent leurs limites : où construire des logements, où accueillir les entreprises, quelles terres agricoles et quels espaces naturels protéger, comment organiser les déplacements. Celui de la grande région de Grenoble date de 2012 ; il est en révision depuis 2024 et le futur « SCoT 2050 » doit s'appliquer en 2029.</p>
+        <div class="hero-cta"><button class="btn" type="button" data-scroll="s-what">Comprendre le SCoT</button><a class="btn ghost" href="#fiches">Parcourir les 101 fiches</a></div>
       </div>
       <div class="prog" aria-label="Avancement de la révision">
         <div class="prog-bar"><span style="width:44%"></span><i style="left:44%"></i></div>
@@ -437,25 +476,57 @@ ol.ask b{display:inline;margin:0}
       </div>
     </div>
 
-    <div class="block lesson">
-      <p class="kicker">Comprendre en cinq minutes</p>
-      <h2 class="lq">Comment adapter l'aménagement de toute la région grenobloise à l'urgence climatique ?</h2>
-      <p class="lead">C'est la question posée par la révision du schéma de cohérence territoriale (SCoT), lancée en 2024. Les élus des sept intercommunalités repensent ensemble, d'ici 2050, la façon d'habiter, de se déplacer, de produire et de protéger les ressources du territoire.</p>
-      <p class="goals-t">Après cette lecture, vous saurez :</p>
-      <ol class="goals">
-        <li><button type="button" class="linklike" data-scroll="s-why">expliquer pourquoi le SCoT approuvé en 2012 doit être révisé</button></li>
-        <li><a class="linklike" href="#demarche">comprendre comment les fiches « composantes de trajectoires » ont été construites avec les intercommunalités</a></li>
-        <li><button type="button" class="linklike" data-scroll="s-axes">repérer les grands leviers d'action : aménagement, écosystèmes, centres-villes et économie</button></li>
-      </ol>
-    </div>
+    <div class="block whatis" id="s-what">
+      <h3 class="sec"><span>1</span> Le SCoT, en pratique</h3>
 
-    <div class="block">
-      <h3 class="sec"><span>1</span> Le SCoT en quelques mots</h3>
-      <div class="what">
-        <div class="w1"><b>Un projet commun</b><p>Le SCoT est le projet que se donnent les élus de 261 communes pour une vingtaine d'années. Il organise le développement du bassin de vie : où construire, comment se déplacer, quels espaces protéger.</p></div>
-        <div class="w2"><b>Ce qu'il fait</b><p>Il fixe des ordres de grandeur, chiffre des objectifs et situe les enjeux sur une carte. Les politiques locales s'appuient sur lui.</p></div>
-        <div class="w3"><b>Ce qu'il ne fait pas</b><p>Ce n'est pas un « super plan d'urbanisme » : il ne fixe pas les règles parcelle par parcelle (hauteurs, implantation des bâtiments). Il ne décide pas où les ménages habitent ni où les entreprises s'installent.</p></div>
-        <div class="w4"><b>Comment il s'impose</b><p>Les plans d'urbanisme ne doivent pas le contredire. La loi parle de compatibilité : respecter ses orientations, sans application mot à mot.</p></div>
+      <div class="wgrid">
+        <div class="wcard">
+          <h4>Pourquoi un plan à cette échelle ?</h4>
+          <p>La vie quotidienne dépasse les limites des communes. Un habitant de Vizille peut travailler à Grenoble, faire ses courses dans une autre commune et partir le week-end dans un massif voisin. L'eau, les routes, les zones d'activités et les paysages se partagent aussi.</p>
+          <p>Si chaque commune décidait seule, les zones commerciales se feraient concurrence, les terres agricoles reculeraient plus vite et les trajets s'allongeraient. Le SCoT fixe des règles communes pour l'éviter.</p>
+        </div>
+        <div class="wcard">
+          <h4>De quoi parle-t-il ?</h4>
+          <ul class="themes">
+            <li><svg class="ic"><use href="#i-house"/></svg>Où construire et combien de logements</li>
+            <li><svg class="ic"><use href="#i-A"/></svg>Les déplacements et les transports</li>
+            <li><svg class="ic"><use href="#i-eco"/></svg>Le commerce, l'artisanat et les zones d'activités</li>
+            <li><svg class="ic"><use href="#i-C"/></svg>L'agriculture, la nature, l'eau et les paysages</li>
+            <li><svg class="ic"><use href="#i-D"/></svg>L'énergie et l'adaptation au climat</li>
+          </ul>
+        </div>
+      </div>
+
+      <h4 class="wsub">Où se situe-t-il ? Du plus large au plus précis</h4>
+      <ol class="levels">
+        <li class="l0"><b>La loi et la Région</b><span>Grandes orientations pour toute la région Auvergne-Rhône-Alpes (schéma régional d'aménagement).</span></li>
+        <li class="arr">le SCoT doit être compatible avec elles</li>
+        <li class="l1 me"><b>Le SCoT</b><span>261 communes : le projet du bassin de vie et ses règles communes.</span></li>
+        <li class="arr">les plans d'urbanisme doivent être compatibles avec le SCoT</li>
+        <li class="l2"><b>Le plan d'urbanisme</b><span>Pour Vizille, celui de la Métropole : ce qui est constructible, terrain par terrain.</span></li>
+        <li class="arr">chaque projet doit respecter le plan d'urbanisme</li>
+        <li class="l3"><b>Le permis de construire</b><span>Une maison, un immeuble, un magasin.</span></li>
+      </ol>
+      <p class="small">« Compatible » veut dire « ne pas contredire » : le plan d'urbanisme peut préciser ou adapter, mais pas aller contre les orientations du SCoT.</p>
+
+      <div class="wgrid three">
+        <div class="wcard">
+          <h4>Comment est-il fait ?</h4>
+          <p><b>Le projet</b> (projet d'aménagement stratégique) dit ce que le territoire veut devenir. <b>Les règles</b> (document d'orientation et d'objectifs) disent ce que les plans d'urbanisme doivent respecter. <b>Les annexes</b> réunissent le diagnostic et l'évaluation environnementale.</p>
+        </div>
+        <div class="wcard">
+          <h4>Qui décide ?</h4>
+          <p>Les élus des sept intercommunalités, réunis au sein de l'établissement public du SCoT. L'État, la Région, les chambres consulaires et les parcs naturels régionaux sont associés. Les habitants donnent leur avis pendant la concertation, puis lors de l'enquête publique.</p>
+        </div>
+        <div class="wcard">
+          <h4>Ce qu'il ne fait pas</h4>
+          <p>Ce n'est pas un « super plan d'urbanisme » : il ne fixe ni hauteurs ni implantations parcelle par parcelle. Il ne décide pas où les ménages habitent ni où les entreprises s'installent. Il ne peut pas, à lui seul, décider de l'évolution de la population.</p>
+        </div>
+      </div>
+
+      <div class="example">
+        <b>Un exemple concret</b>
+        <p>Une commune souhaite ouvrir un terrain agricole à la construction. Son plan d'urbanisme doit rester dans l'enveloppe de consommation d'espace prévue par le SCoT pour son territoire. Sinon, le préfet peut le contester et le juge administratif l'annuler.</p>
       </div>
     </div>
 
@@ -470,6 +541,24 @@ ol.ask b{display:inline;margin:0}
         <li class="now"><b>2024</b><span>Bilan des élus, puis lancement de la révision à l'unanimité.</span></li>
       </ol>
     </div>
+
+    <div class="block lesson">
+      <div class="lesson-q">
+        <p class="kicker">Pourquoi en parler maintenant</p>
+        <h2 class="lq">Comment adapter l'aménagement de toute la région grenobloise à l'urgence climatique ?</h2>
+        <p class="lead">C'est la question posée par la révision du SCoT, lancée en 2024. Les élus des sept intercommunalités repensent ensemble, d'ici 2050, la façon d'habiter, de se déplacer, de produire et de protéger les ressources du territoire.</p>
+      </div>
+      <div class="lesson-goals">
+        <p class="goals-t">La suite de la page permet de :</p>
+        <ol class="goals">
+          <li><button type="button" class="linklike" data-scroll="s-why">comprendre pourquoi le SCoT de 2012 doit être révisé</button></li>
+          <li><a class="linklike" href="#demarche">voir comment les fiches ont été construites avec les intercommunalités</a></li>
+          <li><button type="button" class="linklike" data-scroll="s-axes">repérer les grands leviers d'action : aménagement, écosystèmes, centres-villes et économie</button></li>
+          <li><button type="button" class="linklike" data-scroll="mob">faire le point sur les déplacements</button></li>
+        </ol>
+      </div>
+    </div>
+
 
     <div class="block terr-block">
       <h3 class="sec"><span>3</span> Un territoire, sept intercommunalités</h3>
@@ -539,31 +628,20 @@ ol.ask b{display:inline;margin:0}
     </div>
 
     <div class="block">
-      <h3 class="sec"><span>5</span> Du projet politique à la parcelle</h3>
-      <div class="chain">
-        <div class="link"><span class="lab">Le cap</span><b>Le projet</b><p>Le projet d'aménagement stratégique fixe l'ambition à 2050.</p></div>
-        <div class="link"><span class="lab">Les règles</span><b>Les orientations</b><p>Le document d'orientation traduit le projet en règles, parfois chiffrées : logement, économie, commerce, déplacements, foncier.</p></div>
-        <div class="link"><span class="lab">Les actions</span><b>Le programme d'action</b><p>Facultatif. Il fait vivre le schéma au quotidien.</p></div>
-        <div class="link here"><span class="lab">Sur le terrain</span><b>Les plans d'urbanisme</b><p>Ceux des communes et des intercommunalités doivent respecter ces règles. C'est par eux que le SCoT s'applique à chaque terrain.</p></div>
-      </div>
-      <p class="small">Les fiches du séminaire nourrissent les règles et le programme d'action.</p>
-    </div>
-
-    <div class="block">
-      <h3 class="sec"><span>6</span> Le Cap 2050 : trois axes, quatorze objectifs</h3>
+      <h3 class="sec"><span>5</span> Le Cap 2050 : trois axes, quatorze objectifs</h3>
       <p class="lead">Raison d'être : accompagner les changements. Priorité : faire de la santé humaine et des écosystèmes le moteur du territoire. Touchez un objectif pour voir les fiches qui le servent.</p>
       <div class="cap" id="cap"></div>
     </div>
 
     <div class="block" id="s-axes">
-      <h3 class="sec"><span>7</span> Les grands leviers d'action</h3>
+      <h3 class="sec"><span>6</span> Les grands leviers d'action</h3>
       <p class="lead">Les fiches se regroupent en quatre familles. Chacune répond à une préoccupation partagée par les sept intercommunalités. Touchez une orientation pour lire sa fiche.</p>
       <div class="levers" id="levers"></div>
     </div>
 
 
     <div class="block mob" id="mob">
-      <h3 class="sec"><span>8</span> Les déplacements</h3>
+      <h3 class="sec"><span>7</span> Les déplacements</h3>
       <p class="lead">Les mobilités n'ont pas d'axe propre dans les pages scannées : elles relèvent du cinquième axe (logement, mobilité, équipements), qui ne figure pas dans les scans. Elles apparaissent pourtant dans l'axe A et dans l'objectif n° 14 (déplacements), auquel répondent <b>16 fiches</b>.</p>
       <div class="mobgrid">
         <button type="button" data-code-go="A1"><b>A1</b><strong>Réduire les besoins de déplacement</strong><span>Des bassins de vie de proximité pour les commerces et services essentiels.</span></button>
@@ -587,12 +665,12 @@ ol.ask b{display:inline;margin:0}
 
     <div class="two">
       <div class="block">
-        <h3 class="sec"><span>9</span> Le calendrier</h3>
+        <h3 class="sec"><span>8</span> Le calendrier</h3>
         <ol class="tl" id="tl"></ol>
       </div>
       <div class="col">
         <div class="block stakes">
-          <h3 class="sec"><span>10</span> Ce que le séminaire attend des élus</h3>
+          <h3 class="sec"><span>9</span> Ce que le séminaire attend des élus</h3>
           <ol class="ask">
             <li><b>Débattre</b> des composantes de trajectoires issues des contributions des intercommunalités.</li>
             <li><b>Les reprendre</b> dans chaque intercommunalité : retenir, adapter ou écarter.</li>
@@ -606,7 +684,7 @@ ol.ask b{display:inline;margin:0}
           </div>
         </div>
         <div class="block">
-          <h3 class="sec"><span>11</span> Participer</h3>
+          <h3 class="sec"><span>10</span> Participer</h3>
           <p>La concertation du public reste ouverte jusqu'à fin 2027. Les propositions s'adressent au président Joël Gullon.</p>
           <div class="contact">
             <div><code id="mail">revision.2050@scot-region-grenoble.org</code><button type="button" class="star" data-copy="mail">Copier</button></div>
